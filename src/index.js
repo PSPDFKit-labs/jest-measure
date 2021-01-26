@@ -1,7 +1,7 @@
+const { fs } = require('fs')
 const { performance } = require('./performance')
 const { measure } = require('./measure')
-
-console.log(performance)
+const { error } = require('console')
 
 module.exports = {
     measure: measure,
