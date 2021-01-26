@@ -1,0 +1,35 @@
+const { PerformanceObserver } = require('perf_hooks')
+
+class BenchmarkTest {
+
+    metrics = {}
+
+    constructor(fn) {
+        this.fn = fn
+        this.run = this.run.bind(this)
+    }
+
+    async run() {
+
+        const observer = new PerformanceObserver((list) => {
+
+            const entries = list.getEntries()
+            entries.forEach((entry) => {
+                this.metrics[entry.name] = entry.duration
+            })
+        });
+
+        observer.observe({
+            entryTypes: ['measure'],
+            buffered: false
+        })
+
+        const promise = this.fn() || Promise.resolve()
+
+        return promise.then(() => {
+            return this.metrics
+        })
+    }
+}
+
+module.exports = BenchmarkTest
