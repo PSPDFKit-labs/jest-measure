@@ -1,4 +1,4 @@
-const { PerformanceObserver } = require('perf_hooks')
+const { PerformanceObserver, performance } = require('perf_hooks')
 
 class BenchmarkTest {
 
@@ -15,16 +15,22 @@ class BenchmarkTest {
 
             const entries = list.getEntries()
             entries.forEach((entry) => {
-                this.metrics[entry.name] = entry.duration
+
+                if (entry.entryType == 'function') {
+                    this.metrics['total'] = entry.duration
+                } else {
+                    this.metrics[entry.name] = entry.duration
+                }
             })
         });
 
         observer.observe({
-            entryTypes: ['measure'],
+            entryTypes: ['measure', 'function'],
             buffered: false
         })
 
-        const promise = this.fn() || Promise.resolve()
+        const wrapped = performance.timerify(this.fn);
+        const promise = wrapped() || Promise.resolve()
 
         return promise.then(() => {
             return this.metrics
