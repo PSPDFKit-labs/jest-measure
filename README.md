@@ -212,7 +212,7 @@ The example above formats the metrics into a table for the CLI.
 # Options
 
 To configure options for Jest Measure such as how many iterations
-it will run a test for then simply add a `jestMeasure section
+it will run a test for then simply add a `jestMeasure` section
 to your `package.json` and add any of the avaliable [options](src/options.js)
 
 ```
