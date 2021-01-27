@@ -139,13 +139,13 @@ measure('An async task', async () => {
         s.lap('loaded')
 
         loadFirstPage(() => {
-            const p = s.stopwatchFromLap()
+            const p = s.stopwatchFromLastLap()
             p.lap('first-page-loaded')
             p.measure()
         })
 
         loadLastPage(() => {
-            const p = s.stopwatchFromLap()
+            const p = s.stopwatchFromLastLap()
             p.lap('last-page-loaded')
             p.measure()
         })
@@ -205,3 +205,19 @@ The formatter will try to collect all reports under the current directory
 and will call the callback for each metric to be formatted.
 
 The example above formats the metrics into a table for the CLI.
+
+# Options
+
+To configure options for Jest Measure such as how many iterations
+it will run a test for then simply add a `jestMeasure section
+to your `package.json` and add any of the avaliable [options](src/options.js)
+
+```
+{
+  "name": "my-app",
+  ...
+  "jestBenchmark": {
+      "benchmarkRounds": 50
+  },
+}
+```
