@@ -158,3 +158,49 @@ measure('An async task', async () => {
 ```
 
 # Reporter API
+
+If you want to process reports to output them into other tools such as
+in a comment in a Pull Request using DangerJS.
+
+Then you can use Reporter API in our scripts to consume Jest Measure
+reports.
+
+```
+const { ReportFormatter } = require('jest-measure')
+const Table = require('cli-table')
+
+const table = new Table({
+    head: [
+        'Name',
+        'Benchmark',
+        'Min (ms)',
+        'Mean (ms)',
+        'Mean Error (%)',
+        'Difference (%)'
+    ]
+});
+
+const formatter = new ReportFormatter((metric, stats) => {
+
+    let row = {};
+
+    row[metric] = [
+        stats.totalTime.toFixed(2),
+        stats.min.toFixed(2),
+        stats.mean.toFixed(2),
+        stats.error.toFixed(2),
+        stats.difference.toFixed(2)
+    ];
+
+    table.push(row)
+})
+
+
+formatter.formatReports()
+console.log(table.toString());
+```
+
+The formatter will try to collect all reports under the current directory
+and will call the callback for each metric to be formatted.
+
+The example above formats the metrics into a table for the CLI.
