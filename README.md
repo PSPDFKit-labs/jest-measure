@@ -35,7 +35,7 @@ To do this just run `jest` with `UPDATE_BENCHMARK` set to `true`
 UPDATE_BENCHMARK=true jest
 ```
 
-After this we can now run our benchmarks to check if they performance
+After this we can now run our benchmarks to check if the performance
 has degraded.
 
 By default benchmark don't run so we need to 
