@@ -163,7 +163,7 @@ measure('An async task', async () => {
 If you want to process reports to output them into other tools such as
 in a comment in a Pull Request using DangerJS.
 
-Then you can use Reporter API in our scripts to consume Jest Measure
+Then you can use Reporter API in your scripts to consume Jest Measure
 reports.
 
 ```
