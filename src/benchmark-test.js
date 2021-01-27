@@ -15,17 +15,12 @@ class BenchmarkTest {
 
             const entries = list.getEntries()
             entries.forEach((entry) => {
-
-                if (entry.entryType == 'function') {
-                    this.metrics['total'] = entry.duration
-                } else {
-                    this.metrics[entry.name] = entry.duration
-                }
+                this.metrics[entry.name] = entry.duration
             })
         });
 
         observer.observe({
-            entryTypes: ['measure', 'function'],
+            entryTypes: ['measure'],
             buffered: false
         })
 

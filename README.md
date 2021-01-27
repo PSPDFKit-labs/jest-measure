@@ -60,6 +60,8 @@ The easiest way to measure and return metrics to be compared is by
 returning an dictionary containing the name and value of each metric.
 
 ```
+const { measure } = require('jest-measure')
+
 measure('A long method', () => {
     return {
         pageLoadTime: 10,
@@ -72,6 +74,29 @@ The `pageLoadTime` and `totalTime` metrics will now appear in the list
 of metrics when running `jest-measure`
 
 # Performance API Usage
+
+Jest measure supports using the Performance API to more accuratley
+collect metrics.
+
+Every call to `performance.measure` will automatically be collected and
+added to the list of metrics when running `jest-measure`
+
+```
+const { performance, measure } = require('jest-measure')
+
+measure('An async task', async () => {
+
+    performance.mark('load')
+
+    onLoad(() => {
+        performance.mark('loaded')
+    })
+
+    await waitUnitlLoaded()
+    
+    performance.mark('load-time', 'load', 'loaded')
+})
+```
 
 # Measurement Objects
 
