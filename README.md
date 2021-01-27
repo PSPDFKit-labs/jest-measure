@@ -35,6 +35,9 @@ To do this just run `jest` with `UPDATE_BENCHMARK` set to `true`
 UPDATE_BENCHMARK=true jest
 ```
 
+This will generate the baseline metrics and store them under a 
+`__benchmark__` folder in a similar manner to snapshot tests.
+
 After this we can now run our benchmarks to check if the performance
 has degraded.
 
