@@ -1,4 +1,4 @@
-const { PerformanceObserver, performance } = require('perf_hooks')
+const { PerformanceObserver } = require('perf_hooks')
 
 class BenchmarkTest {
 
@@ -29,12 +29,17 @@ class BenchmarkTest {
             buffered: false
         })
 
-        const wrapped = performance.timerify(this.fn);
-        const promise = wrapped() || Promise.resolve()
+        const result = this.fn() || {}
 
-        return promise.then(() => {
+        if (result instanceof Promise) {
+            return result.then((result) => Object.assign({}, this.metrics, result))
+
+        } else if (result !== null) {
+            return Object.assign({}, this.metrics, result)
+
+        } else {
             return this.metrics
-        })
+        }
     }
 }
 

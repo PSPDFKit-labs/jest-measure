@@ -31,9 +31,9 @@ class ReportGenerator {
         const reportFolder = path.dirname(this.reportPath)
         if (!fs.existsSync(reportFolder)) fs.mkdirSync(reportFolder)
 
-        let originalReport = this._readReport() || []
-        let originalTestDetails = originalReport.find(element => element.name = this.testName) || {};
-        
+        const originalReport = this._readReport() || []
+        const originalTestDetails = originalReport.find(element => element.name === this.testName) || {};
+
         const analyser = new StatisticAnalyser(results);
         const metrics = analyser.analyse(originalTestDetails.metrics);
         
@@ -45,6 +45,7 @@ class ReportGenerator {
         if (shouldUpdate) {
             let newReport = originalReport.filter((e) => e !== originalTestDetails)
             newReport.push(newTestDetails)
+
             this._writeReport(newReport)
         }
 

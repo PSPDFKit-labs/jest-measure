@@ -2,24 +2,35 @@ const { performance } = require('./performance')
 
 class Stopwatch {
 
-    currentLapName = null
-    segments = []
+    _currentLapName = null
+    _segments = []
 
     constructor(initialLapName) {
-        this.currentLapName = initialLapName
+
+        if (initialLapName) {
+            this._currentLapName = initialLapName
+            performance.mark(this._currentLapName);
+        }
     }
 
     lap(name) {
         performance.mark(name);
 
-        this.segments.push([this.currentLapName, name])
-        this.currentLapName = name
+        this._segments.push([this._currentLapName, name])
+        this._currentLapName = name
         
-        return new Stopwatch(name)
+        const stopwatch = new Stopwatch()
+        stopwatch._currentLapName = this._currentLapName
+        return stopwatch
+    }
+
+    time(fn) {
+        performance.timerify(fn)
     }
 
     measure() {
-        this.segments.forEach((segment) => {
+        console.lo
+        this._segments.forEach((segment) => {
             performance.measure(segment[1], segment[0], segment[1]);
         });
     }
