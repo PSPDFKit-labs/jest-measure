@@ -95,7 +95,7 @@ measure('An async task', async () => {
 
     await waitUnitlLoaded()
     
-    performance.mark('load-time', 'load', 'loaded')
+    performance.measure('load-time', 'load', 'loaded')
 })
 ```
 
