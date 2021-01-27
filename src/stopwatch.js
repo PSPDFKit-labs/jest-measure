@@ -20,7 +20,7 @@ class Stopwatch {
         this._currentLapName = name
     }
 
-    stopwatchFromLap() {
+    stopwatchFromLastLap() {
         const stopwatch = new Stopwatch()
         stopwatch._currentLapName = this._currentLapName
         return stopwatch
