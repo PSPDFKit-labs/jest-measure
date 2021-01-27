@@ -100,4 +100,29 @@ measure('An async task', async () => {
 
 # Measurement Objects
 
+We also have the measurement objects which provide
+a high level API to simplify the use of the performance API.
+
+For example we can use a Stopwatch to measure the time taken between
+key events in our application.
+
+```
+const { Stopwatch, measure } = require('jest-measure')
+
+measure('An async task', async () => {
+
+    const s = new Stopwatch('load')
+
+    onLoad(() => {
+        s.lap('loaded')
+    })
+
+    await waitUnitlLoaded()
+
+    s.measure()
+})
+```
+
+
+
 # Reporter API
