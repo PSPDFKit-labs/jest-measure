@@ -1,39 +1,37 @@
 #!/usr/bin/env node
 
-const {
-    REPORT_FOLDER_NAME,
-    REPORT_FILE_EXTENSION
-  } = require('../src/constants')
+const ReportFormatter = require('../src/report-formatter')
+const Table = require('cli-table')
 
-const glob = require("glob")
-const fs = require('fs')
-const yargs = require("yargs")
+const table = new Table({
+    head: [
+        'Name',
+        'Benchmark',
+        'Min (ms)',
+        'Mean (ms)',
+        'Mean Error (%)',
+        'Difference (%)'
+    ]
+});
 
-glob(`**/${REPORT_FOLDER_NAME}/*.${REPORT_FILE_EXTENSION}`, (er, files) => {
+const formatter = new ReportFormatter((metric, stats) => {
 
-    const results = files.map((file) => {
-        const reportContent = fs.readFileSync(file)
-        const report = JSON.parse(reportContent)
-        return report
-    }).flat()
+    let row = {};
 
-    results.forEach((result) => {
-        const metrics = result.metrics
-        console.log(result)
+    row[metric] = [
+        stats.totalTime.toFixed(2),
+        stats.min.toFixed(2),
+        stats.mean.toFixed(2),
+        stats.error.toFixed(2),
+        stats.difference.toFixed(2)
+    ];
 
-        // Build option to pass in formatters like cli and markdown
-        //
-        const formatter = (metric, stats) => {
-            console.log(`${metric} took ${stats.totalTime}`);
-        }
-
-        const metricNames = Object.keys(metrics)
-        metricNames.forEach((metric) => {
-            const fullName = `${result.name} > ${metric}`
-            formatter(fullName, metrics[metric])
-        })
-    })
+    table.push(row)
 })
+
+
+formatter.formatReports()
+console.log(table.toString());
 
 //     printBenchmarkResults: results => {
 //       let baselineDiffProps = null

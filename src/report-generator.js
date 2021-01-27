@@ -4,7 +4,7 @@ const os = require('os')
 
 const StatisticAnalyser = require('./statistic-analyser')
 
-class StatisticReporter {
+class ReportGenerator {
 
     constructor(testName, reportPath) {
         this.testName = testName
@@ -25,11 +25,7 @@ class StatisticReporter {
         const content = JSON.stringify(report)
         fs.writeFileSync(this.reportPath, content)
     }
-
-    _calculateDifference() {
-
-    }
-
+    
     generateReport(results, shouldUpdate) {
 
         const reportFolder = path.dirname(this.reportPath)
@@ -56,5 +52,5 @@ class StatisticReporter {
     }
 }
 
-module.exports = StatisticReporter
+module.exports = ReportGenerator
   

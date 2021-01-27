@@ -17,6 +17,7 @@
   },
   "jestBenchmark": {},
   "dependencies": {
+    "cli-table": "^0.3.4",
     "glob": "^7.1.6",
     "yargs": "^16.2.0"
   }

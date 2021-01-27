@@ -21,6 +21,10 @@ class StatisticAnalyser {
         // Confidence
         return std / Math.sqrt(n)
     }
+  
+    _calculatePercentualDifference(newValue, oldValue) {
+        return (newValue / oldValue - 1) * 100
+    }
 
     analyseStat(name, oldStat) {
         const oldMean = (oldStat) ? oldStat.mean : null;
@@ -33,8 +37,7 @@ class StatisticAnalyser {
         // Margin of error (% of mean)
         //
         const error = (this._confidence(values, avg) / avg) * 100
-
-        const difference = (oldMean) ? avg / oldMean : 0
+        const difference = (oldMean) ? this._calculatePercentualDifference(avg, oldMean) : 0
 
         return {
             mean: avg,
@@ -43,7 +46,7 @@ class StatisticAnalyser {
             totalTime: totalTime,
             min: Math.min(...values),
             max: Math.max(...values),
-            difference: difference
+            difference: difference 
         }
     }
 
@@ -57,38 +60,3 @@ class StatisticAnalyser {
 }
 
 module.exports = StatisticAnalyser
-
-
-
-//     calculateDiffFromBaseline: (newResults, baseline, diffProperties) => {
-//       // This argument defines names of measurement keys that should be compared to baseline.
-//       const propsToDiff = diffProperties || ['min', 'mean']
-  
-//       // Make a deep copy of newResults.
-//       const results = JSON.parse(JSON.stringify(newResults))
-  
-//       Object.keys(results).forEach(key => {
-//         let measurements = results[key]
-//         const measurementsBaseline = baseline[key]
-//         if (measurements && measurementsBaseline) {
-//           Object.keys(measurements).forEach(measurementKey => {
-//             const measurement = measurements[measurementKey]
-//             const measurementBaseline = measurementsBaseline[measurementKey]
-//             if (measurement && measurementBaseline) {
-//               measurement.baselineDiff = {}
-//               for (const prop of propsToDiff) {
-//                 measurement.baselineDiff[prop] = toFixed(
-//                   calculatePercentualDifference(measurement[prop], measurementBaseline[prop]),
-//                 )
-//               }
-//             }
-//           })
-//         }
-//       })
-//       return results
-//     },
-
-  
-//   function calculatePercentualDifference(newValue, oldValue) {
-//     return (newValue / oldValue - 1) * 100
-//   }

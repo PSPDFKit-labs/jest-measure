@@ -4,7 +4,7 @@ const {
 } = require('./constants')
 
 const BenchmarkRunner = require('./benchmark-runner')
-const StatisticReporter = require('./statistic-reporter')
+const ReportGenerator = require('./report-generator')
 const path = require('path')
 const globalOptions = require('./options')
 
@@ -52,8 +52,8 @@ function measure(name, fn, options) {
         const reportPath = `${testPath.dir}/${REPORT_FOLDER_NAME}/${testPath.name}.${REPORT_FILE_EXTENSION}`
 
         const shouldUpdate = options.updateBenchmarks;
-        const reporter = new StatisticReporter(state.currentTestName, reportPath);
-        const testDetails = reporter.generateReport(runner.benchmarkResults, shouldUpdate);
+        const generator = new ReportGenerator(state.currentTestName, reportPath);
+        const testDetails = generator.generateReport(runner.benchmarkResults, shouldUpdate);
         const metrics = testDetails.metrics
         const metricName = Object.keys(metrics)
 
