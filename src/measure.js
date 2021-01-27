@@ -1,11 +1,13 @@
-const BenchmarkRunner = require('./benchmark-runner')
+const {
+  REPORT_FOLDER_NAME,
+  REPORT_FILE_EXTENSION
+} = require('./constants')
 
+const BenchmarkRunner = require('./benchmark-runner')
 const StatisticReporter = require('./statistic-reporter')
 const path = require('path')
 const globalOptions = require('./options')
 
-const REPORT_FOLDER_NAME = '__benchmark__'
-const REPORT_FILE_EXTENSION = 'bench'
 
 expect.extend({
     toBeNoSlower(received, ceiling) {

@@ -1,0 +1,7 @@
+const REPORT_FOLDER_NAME = '__benchmark__'
+const REPORT_FILE_EXTENSION = 'bench'
+
+module.exports = {
+    REPORT_FOLDER_NAME: REPORT_FOLDER_NAME,
+    REPORT_FILE_EXTENSION: REPORT_FILE_EXTENSION
+}
