@@ -1,7 +1,8 @@
 # Jest Measure
 
 The Jest Measure library implements APIs for writing benchmaks to profile and
-verify the performance of your code.
+verify the performance of your code when using
+the Jest unit testing library.
 
 # Getting Started
 
