@@ -56,6 +56,21 @@ and the metrics we use to compare our tests with.
 
 # Basic Usage
 
+The easiest way to measure and return metrics to be compared is by
+returning an dictionary containing the name and value of each metric.
+
+```
+measure('A long method', () => {
+    return {
+        pageLoadTime: 10,
+        totalTime: 1000
+    }
+})
+```
+
+The `pageLoadTime` and `totalTime` metrics will now appear in the list
+of metrics when running `jest-measure`
+
 # Performance API Usage
 
 # Measurement Objects
