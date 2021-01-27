@@ -139,7 +139,7 @@ measure('An async task', async () => {
         s.lap('loaded')
 
         loadFirstPage(() => {
-            const p = s.stopwatchFromLap('first-page-loaded')
+            const p = s.stopwatchFromLap()
             p.lap('first-page-loaded')
             p.measure()
         })
