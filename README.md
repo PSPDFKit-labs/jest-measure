@@ -123,6 +123,38 @@ measure('An async task', async () => {
 })
 ```
 
+Sometimes the subject we are measuring can spawn concurrent operations
+we need to measure independently.
 
+
+```
+const { Stopwatch, measure } = require('jest-measure')
+
+measure('An async task', async () => {
+
+    const s = new Stopwatch('load')
+
+    onLoad(() => {
+        s.lap('loaded')
+
+        loadFirstPage(() => {
+            const p = s.stopwatchFromLap('first-page-loaded')
+            p.lap('first-page-loaded')
+            p.measure()
+        })
+
+        loadLastPage(() => {
+            const p = s.stopwatchFromLap()
+            p.lap('last-page-loaded')
+            p.measure()
+        })
+    })
+
+    await waitUnilLoaded()
+    await waitUnilPagesLoaded()
+
+    s.measure()
+})
+```
 
 # Reporter API

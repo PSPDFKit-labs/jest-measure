@@ -18,7 +18,9 @@ class Stopwatch {
 
         this._segments.push([this._currentLapName, name])
         this._currentLapName = name
-        
+    }
+
+    stopwatchFromLap() {
         const stopwatch = new Stopwatch()
         stopwatch._currentLapName = this._currentLapName
         return stopwatch
