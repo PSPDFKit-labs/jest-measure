@@ -5,8 +5,12 @@ const defaultOptions = {
     benchmarkRounds: 10,
     /** Number of rounds to run as warm-up. These are ignored from benchmarking statistics. */
     warmUpRounds: 0,
+    /* The percentage threshold over which to treat a difference as an error. */
+    differenceThreshold: 2,
     /** If benchmark tests should be ran */
-    runBenchmarks: process.env.BENCHMARK === 'true'
+    runBenchmarks: process.env.RUN_BENCHMARK === 'true' || process.env.UPDATE_BENCHMARK === 'true',
+    /** If benchmark baseline should be updated */
+    updateBenchmarks: process.env.UPDATE_BENCHMARK === 'true'
 }
 
 function parseOptions() {

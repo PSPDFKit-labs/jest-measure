@@ -1,3 +1,31 @@
+const { performance } = require('./performance')
+
+class Stopwatch {
+
+    currentLapName = null
+    segments = []
+
+    constructor(initialLapName) {
+        this.currentLapName = initialLapName
+    }
+
+    lap(name) {
+        performance.mark(name);
+
+        this.segments.push([this.currentLapName, name])
+        this.currentLapName = name
+        
+        return new Stopwatch(name)
+    }
+
+    measure() {
+        this.segments.forEach((segment) => {
+            performance.measure(segment[1], segment[0], segment[1]);
+        });
+    }
+}
+
+module.exports = Stopwatch
 
 //   /**
 //    * Simple stopwatch implementation with lap ability.
