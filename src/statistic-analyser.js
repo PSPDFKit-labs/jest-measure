@@ -22,8 +22,8 @@ class StatisticAnalyser {
         return std / Math.sqrt(n)
     }
   
-    _calculatePercentualDifference(newValue, oldValue) {
-        return (newValue / oldValue - 1) * 100
+    _calculateDifference(newValue, oldValue) {
+        return newValue / oldValue - 1
     }
 
     analyseStat(name, oldStat) {
@@ -37,7 +37,7 @@ class StatisticAnalyser {
         // Margin of error (% of mean)
         //
         const error = (this._confidence(values, avg) / avg) * 100
-        const difference = (oldMean) ? this._calculatePercentualDifference(avg, oldMean) : 0
+        const difference = (oldMean) ? this._calculateDifference(avg, oldMean) : 0
 
         return {
             mean: avg,
