@@ -38,7 +38,6 @@ expect.extend({
  * @param options   Benchmarking options, use this to tweak benchmark behavior.
  */
 function measure(name, fn, options) {
-
     options = Object.assign({}, globalOptions, options)
 
     const runner = new BenchmarkRunner(fn, options);
