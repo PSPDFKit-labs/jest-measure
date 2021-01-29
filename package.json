@@ -1,6 +1,6 @@
 {
   "name": "jest-measure",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "bin": {
     "jest-measure": "./bin/index.js"
