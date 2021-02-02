@@ -41,7 +41,7 @@ class StatisticAnalyser {
 
         return {
             mean: avg,
-            error: error,
+            error: error || 0,
             runs: n,
             totalTime: totalTime,
             min: Math.min(...values),
