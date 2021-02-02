@@ -4,6 +4,7 @@ class Stopwatch {
 
     _currentLapName = null
     _segments = []
+    _subwatches = []
 
     constructor(initialLapName) {
 
@@ -20,9 +21,11 @@ class Stopwatch {
         this._currentLapName = name
     }
 
-    stopwatchFromLastLap() {
+    subStopwatchFromLastLap() {
         const stopwatch = new Stopwatch()
         stopwatch._currentLapName = this._currentLapName
+        this._subwatches.push(stopwatch)
+
         return stopwatch
     }
 
@@ -30,6 +33,8 @@ class Stopwatch {
         this._segments.forEach((segment) => {
             performance.measure(segment[1], segment[0], segment[1]);
         });
+
+        this._subwatches.forEach((s) => s.measure())
     }
 }
 

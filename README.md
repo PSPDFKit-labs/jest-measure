@@ -127,9 +127,11 @@ measure('An async task', async () => {
 })
 ```
 
-Sometimes the subject we are measuring can spawn concurrent operations
-we need to measure independently.
+Sometimes the subject we are measuring can spawn concurrent operations we need to measure independently.
 
+We can use sub stopwatches for this which will allow you
+to measure the time between laps starting from the last
+lap of the main stopwatch.
 
 ```
 const { Stopwatch, measure } = require('jest-measure')
@@ -142,15 +144,13 @@ measure('An async task', async () => {
         s.lap('loaded')
 
         loadFirstPage(() => {
-            const p = s.stopwatchFromLastLap()
+            const p = s.subStopwatchFromLastLap()
             p.lap('first-page-loaded')
-            p.measure()
         })
 
         loadLastPage(() => {
-            const p = s.stopwatchFromLastLap()
+            const p = s.subStopwatchFromLastLap()
             p.lap('last-page-loaded')
-            p.measure()
         })
     })
 
@@ -160,6 +160,10 @@ measure('An async task', async () => {
     s.measure()
 })
 ```
+
+All of these sub-stopwatches will have their metrics
+automatically measured for you when you call measure on the
+main stopwatch.
 
 # Reporter API
 
