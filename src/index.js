@@ -1,6 +1,6 @@
 const { performance } = require('./performance')
 const { measure } = require('./measure')
-const { Stopwatch } = require('./stopwatch')
+const Stopwatch = require('./stopwatch')
 
 module.exports = {
     measure: measure,
