@@ -16,10 +16,10 @@ function exportForJest() {
 }
 
 function exportForNode() {
-    const ReportGenerator = require('./report-generator')
+    const ReportFormatter = require('./report-formatter')
 
     return {
-        ReportGenerator: ReportGenerator
+        ReportFormatter: ReportFormatter
     }
 }
 
