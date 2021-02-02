@@ -23,7 +23,7 @@ expect.extend({
       } else {
         return {
           message: () =>
-            `expected ${received.name} not to be no more than ${ceiling}% slower but it was ${received.difference.toFixed(2)}% slower`,
+            `expected ${received.name} not to be more than ${ceiling}% slower but it was ${received.difference.toFixed(2)}% slower`,
           pass: false,
         };
       }
