@@ -193,7 +193,7 @@ const formatter = new ReportFormatter((metric, stats) => {
     let row = {};
 
     row[metric] = [
-        stats.totalTime.toFixed(2),
+        stats.avg.toFixed(2),
         stats.min.toFixed(2),
         stats.mean.toFixed(2),
         stats.error.toFixed(2),

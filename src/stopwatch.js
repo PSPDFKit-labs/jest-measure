@@ -13,7 +13,7 @@ class Stopwatch {
     }
 
     lap(lapName) {
-        performance.mark(this.name + '-' + lapName);
+        performance.mark(this._name + '-' + lapName);
 
         this._segments.push([this._currentLapName, lapName])
         this._currentLapName = lapName
@@ -30,8 +30,8 @@ class Stopwatch {
 
     measure() {
         this._segments.forEach((segment) => {
-            const startMark = this.name + ' ' + segment[0]
-            const endMark = this.name + ' ' + segment[1]
+            const startMark = this._name + '-' + segment[0]
+            const endMark = this._name + '-' + segment[1]
 
             performance.measure(segment[1], startMark, endMark);
         });
@@ -43,8 +43,8 @@ class Stopwatch {
         this.measure()
 
         this._name = uuid.v4()
-        this._currentLapName = this._name
-        performance.mark(this._name);
+        this._currentLapName = 'start'
+        performance.mark(this._name + '-' + this._currentLapName);
 
         this._segments = []
         this._subwatches = []
