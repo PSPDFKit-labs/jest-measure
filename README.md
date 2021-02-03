@@ -115,7 +115,7 @@ const { Stopwatch, measure } = require('jest-measure')
 
 measure('An async task', async () => {
 
-    const s = new Stopwatch('load')
+    const s = new Stopwatch()
 
     onLoad(() => {
         s.lap('loaded')
@@ -138,7 +138,7 @@ const { Stopwatch, measure } = require('jest-measure')
 
 measure('An async task', async () => {
 
-    const s = new Stopwatch('load')
+    const s = new Stopwatch()
 
     onLoad(() => {
         s.lap('loaded')
