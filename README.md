@@ -197,7 +197,7 @@ const formatter = new ReportFormatter((metric, stats) => {
         stats.min.toFixed(2),
         stats.mean.toFixed(2),
         stats.error.toFixed(2),
-        stats.difference.toFixed(2)
+        stats.difference.toFixed(2) * 100
     ];
 
     table.push(row)
