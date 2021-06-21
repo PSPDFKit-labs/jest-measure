@@ -1,6 +1,6 @@
 {
   "name": "jest-measure",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "The Jest Measure library implements APIs for writing benchmaks to profile and verify the performance of your code when using the Jest unit testing library.",
   "keywords": [
     "jest",
@@ -31,7 +31,7 @@
     "report": "jest-measure"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^26.6.3"
   },
