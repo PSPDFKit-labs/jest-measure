@@ -1,7 +1,26 @@
 {
   "name": "jest-measure",
-  "version": "0.0.12",
-  "description": "",
+  "description": "The Jest Measure library implements APIs for writing benchmaks to profile and verify the performance of your code when using the Jest unit testing library.",
+  "keywords": [
+    "jest",
+    "test",
+    "testing",
+    "performance",
+    "perf",
+    "measure",
+    "measuring",
+    "benchmark",
+    "benchmarking",
+    "bench-test"
+  ],
+  "homepage": "https://github.com/PSPDFKit-labs/jest-measure/#readme",
+  "bugs": {
+    "url": "https://github.com/PSPDFKit-labs/jest-measure/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PSPDFKit-labs/jest-measure.git"
+  },
   "bin": {
     "jest-measure": "./bin/index.js"
   },
